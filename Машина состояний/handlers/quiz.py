@@ -15,7 +15,11 @@ async def startReg(message: Message, state: FSMContext):
     await message.answer('Введите nickname')
     await state.set_state(QuizState.nickname)
 
-
+# @router.message(QuizState.nickname) : Указывается какое состояние обрабатывается в настоящее время
+# async def getNickname(message: Message, state: FSMContext): : обратить внимание на новый параметр,
+# отвечающий за работу с состояниями
+# await state.update_data(nickname=message.text.lower()) : обновление данных состония
+# await state.set_state(QuizState.birthYear) : переъод к следующему состоянию
 @router.message(QuizState.nickname)
 async def getNickname(message: Message, state: FSMContext):
     await state.update_data(nickname=message.text.lower())
